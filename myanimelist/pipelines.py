@@ -44,12 +44,12 @@ class ProcessPipeline(object):
       
       item['popularity'] = int(item['popularity'].replace("#", "").strip())
       item['members']    = int(item['members'].replace(",", "").strip())
-      item['episodes']   = item['episodes'].replace(",", "").strip()
+      # item['episodes']   = item['episodes'].replace(",", "").strip()
 
       return item
 
     def process_review(self, item):
-      item['score']      = float(item['score'].replace("\n", "").strip())
+      # item['score']      = float(item['score'].replace("\n", "").strip())
 
       return item
 
@@ -90,7 +90,7 @@ class SaveMongoPipeline(object):
 
     def open_spider(self, spider):
       if self.is_configured:
-        self.client  = MongoClient(self.mongodb_url)
+        self.client  = MongoClient(self.mongodb_url, 27017)
         self.db      = self.client['myanimelist']
         
         self.collection = {}
